@@ -49,12 +49,12 @@ module Auditable
           auditable:,
           action:,
           comment: fields.fetch(:comment),
-          audited_changes: {
+          audited_changes: PlainData.normalize(
             records: audited_changed_records,
             fields: fields.except(:comment),
             arguments: arguments,
             models: models&.map { it.to_global_id.uri }
-          }
+          )
         )
 
         [value, audit]

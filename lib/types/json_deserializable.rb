@@ -8,4 +8,9 @@ class Types::JsonDeserializable < ActiveRecord::Type::Json
 
   def cast_value(value) = value.nil? || value.is_a?(@klass) ? super : @klass.new(super)
   def deserialize(value) = cast_value(super)
+
+  def serialize(value)
+    return super if value.nil?
+    super(PlainData.normalize(value))
+  end
 end
