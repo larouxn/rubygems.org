@@ -584,7 +584,7 @@ class RubygemTest < ActiveSupport::TestCase
           }
         )
 
-        hash = MultiJson.load(@rubygem.to_json)
+        hash = JSON.parse(@rubygem.to_json)
 
         assert_equal "http://example.com/home", hash["homepage_uri"]
         assert_equal "http://example.com/wiki", hash["wiki_uri"]
